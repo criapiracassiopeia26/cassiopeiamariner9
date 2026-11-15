@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <!-- SEO + social previews. JavaScript swaps these to Spanish when ES is chosen.
+       Crawlers that don't run JS see English (the default language). -->
+  <title>Mariner 9 Mission · A retro adventure on Mars · Team Cassiopeia</title>
+  <meta name="description" content="Mariner 9 Mission: a pixel-art animated story, a browser game and an accessible version in sign language and braille by Team Cassiopeia for the NASA Space Apps Challenge 2026 in Duitama, Colombia.">
+  <meta name="theme-color" content="#0d0a22">
+  <meta name="color-scheme" content="dark">
+
+  <!-- After deploying, replace PASTE_SITE_URL_HERE with your real address (see README) -->
+  <link rel="canonical" href="PASTE_SITE_URL_HERE">
+  <link rel="alternate" hreflang="en" href="PASTE_SITE_URL_HERE?lang=en">
+  <link rel="alternate" hreflang="es" href="PASTE_SITE_URL_HERE?lang=es">
+  <link rel="alternate" hreflang="x-default" href="PASTE_SITE_URL_HERE">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mariner 9 Mission · Team Cassiopeia">
+  <meta property="og:title" content="Mariner 9 Mission · A retro adventure on Mars · Team Cassiopeia">
+  <meta property="og:description" content="Mariner 9 Mission: a pixel-art animated story, a browser game and an accessible version in sign language and braille by Team Cassiopeia for the NASA Space Apps Challenge 2026 in Duitama, Colombia.">
+  <meta property="og:image" content="assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Mariner 9 Mission — pixel-art title screen with Cass, her hoverbike, the robot Mariner 9 and Mars.">
+  <meta property="og:url" content="PASTE_SITE_URL_HERE">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="es_LA">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+  <!-- Fonts: Silkscreen (pixel headings) + Atkinson Hyperlegible (body, designed for low-vision readability) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Silkscreen:wght@400;700&display=swap">
+
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+</head>
+
+<body>
+  <!-- NOTE FOR EDITORS: texts are NOT written here. Every data-i18n="..." key
+       is filled from config.js → CONFIG.i18n.en / CONFIG.i18n.es -->
+
+  <a class="skip-link" href="#main" data-i18n="a11y.skip"></a>
+
+  <!-- Animated starfield (decorative) -->
+  <canvas id="starfield" class="starfield" aria-hidden="true"></canvas>
+
+  <!-- "PRESS START" intro (decorative, never blocks keyboard or screen readers) -->
+  <div id="intro" class="intro" aria-hidden="true" hidden>
+    <div class="intro__inner">
+      <span class="sprite intro__robot" data-sprite="mariner9" data-asset="mariner9"></span>
+      <p class="intro__title"><span data-i18n="hero.title1"></span> <span class="intro__title2" data-i18n="hero.title2"></span></p>
+      <p class="intro__press blink" data-i18n="intro.press"></p>
+      <p class="intro__hint" data-i18n="intro.hint"></p>
+    </div>
+  </div>
+
+  <!-- ============================ HEADER ============================ -->
+  <header class="site-header" id="site-header">
+    <div class="site-header__inner wrap">
+      <a class="brand" href="#top">
+        <span class="brand__logo" data-logo aria-hidden="true"></span>
+        <span class="brand__name" data-config="teamName"></span>
+      </a>
+
+      <button class="nav-toggle pixel-btn pixel-btn--ghost" type="button"
+              aria-expanded="false" aria-controls="site-nav"
+              data-i18n-attr="aria-label:a11y.menuOpen">
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+        <span class="nav-toggle__text" data-i18n="a11y.menu"></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" data-i18n-attr="aria-label:a11y.navLabel">
+        <ul>
+          <li><a href="#video" data-i18n="nav.video"></a></li>
+          <li><a href="#game"  data-i18n="nav.game"></a></li>
+          <li><a href="#sign"  data-i18n="nav.sign"></a></li>
+          <li><a href="#story" data-i18n="nav.story"></a></li>
+          <li><a href="#team"  data-i18n="nav.team"></a></li>
+        </ul>
+      </nav>
+
+      <div class="lang-switch" role="group" data-i18n-attr="aria-label:a11y.langGroup">
+        <button type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="true">EN</button>
+        <span aria-hidden="true">|</span>
+        <button type="button" data-lang="es" lang="es" aria-label="Español" aria-pressed="false">ES</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <!-- ============================ 1. HERO ============================ -->
+    <section id="top" class="hero" aria-labelledby="hero-title">
+      <div class="hero__sky" aria-hidden="true">
+        <span class="sprite float-sat float-sat--a" data-sprite="satellite"></span>
+        <span class="sprite float-sat float-sat--b" data-sprite="satellite"></span>
+      </div>
+
+      <div class="hero__inner wrap">
+        <p class="badge"><span class="badge__dot" aria-hidden="true"></span><span data-i18n="hero.badge"></span></p>
+
+        <div class="hero__titlewrap">
+          <span class="hero__robot" aria-hidden="true">
+            <span class="hero__trail"></span>
+            <span class="sprite" data-sprite="mariner9" data-asset="mariner9"></span>
+          </span>
+          <h1 id="hero-title" class="hero__title">
+            <span class="hero__title1 glow-text" data-i18n="hero.title1"></span><span class="sr-only"> </span>
+            <span class="hero__title2"><span class="hero__line" aria-hidden="true"></span><span class="hero__title2-text" data-i18n="hero.title2"></span><span class="hero__line" aria-hidden="true"></span></span>
+          </h1>
+        </div>
+
+        <p class="hero__tagline">
+          <span class="sr-only" data-i18n="hero.tagline"></span>
+          <span class="typewriter" aria-hidden="true" data-type="hero.tagline"></span>
+        </p>
+        <p class="hero__team" data-i18n="hero.byTeam"></p>
+
+        <nav class="arcade-panel hero__menu" data-i18n-attr="aria-label:a11y.heroMenu">
+          <ul class="arcade-menu" data-arcade-menu>
+            <li><a href="#video" class="arcade-menu__item is-selected"><span class="arcade-menu__cursor" aria-hidden="true"><span class="sprite" data-sprite="mariner9" data-asset="mariner9"></span></span><span class="arcade-menu__label" data-i18n="hero.m1"></span><span class="arcade-menu__sub" data-i18n="hero.m1s"></span></a></li>
+            <li><a href="#game"  class="arcade-menu__item"><span class="arcade-menu__cursor" aria-hidden="true"><span class="sprite" data-sprite="mariner9" data-asset="mariner9"></span></span><span class="arcade-menu__label" data-i18n="hero.m2"></span><span class="arcade-menu__sub" data-i18n="hero.m2s"></span></a></li>
+            <li><a href="#sign"  class="arcade-menu__item"><span class="arcade-menu__cursor" aria-hidden="true"><span class="sprite" data-sprite="mariner9" data-asset="mariner9"></span></span><span class="arcade-menu__label" data-i18n="hero.m3"></span><span class="arcade-menu__sub" data-i18n="hero.m3s"></span></a></li>
+            <li><a href="#story" class="arcade-menu__item"><span class="arcade-menu__cursor" aria-hidden="true"><span class="sprite" data-sprite="mariner9" data-asset="mariner9"></span></span><span class="arcade-menu__label" data-i18n="hero.m4"></span><span class="arcade-menu__sub" data-i18n="hero.m4s"></span></a></li>
+            <li><a href="#team"  class="arcade-menu__item"><span class="arcade-menu__cursor" aria-hidden="true"><span class="sprite" data-sprite="mariner9" data-asset="mariner9"></span></span><span class="arcade-menu__label" data-i18n="hero.m5"></span><span class="arcade-menu__sub" data-i18n="hero.m5s"></span></a></li>
+          </ul>
+        </nav>
+
+        <p class="keyhint" aria-hidden="true">
+          <kbd>↑</kbd><kbd>↓</kbd> <span data-i18n="hero.keys"></span>
+        </p>
+      </div>
+
+      <!-- Scene: Cass + hoverbike on a cliff, Mars on the right.
+           🎨 PIXEL ART: every <span data-sprite> / <div data-mars> is filled automatically.
+           To swap in your own PNG/GIF, set its path in config.js → "7) YOUR PIXEL ART"
+           (data-asset="cass" uses assets.cass, data-asset="hoverbike" uses assets.hoverbike, etc.) -->
+      <div class="hero__scene" role="img" data-i18n-attr="aria-label:a11y.heroScene">
+        <div class="hero__cliff" aria-hidden="true"></div>
+        <span class="sprite hero__bike" data-sprite="hoverbike" data-asset="hoverbike" aria-hidden="true"></span>
+        <span class="sprite hero__cass" data-sprite="cass" data-asset="cass" aria-hidden="true"></span>
+        <span class="sprite hero__robot-mobile" data-sprite="mariner9" data-asset="mariner9" aria-hidden="true"></span>
+        <div class="hero__mars" data-mars aria-hidden="true"></div>
+      </div>
+      <span class="hero__version" aria-hidden="true" data-i18n="hero.version"></span>
+    </section>
+
+    <div class="horizon" aria-hidden="true"></div>
+
+    <!-- ======================= 2. STORY VIDEO ======================= -->
+    <section id="video" class="section" aria-labelledby="video-title">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="kicker" data-i18n="video.kicker"></p>
+          <h2 id="video-title" class="section-title" data-i18n="video.title"></h2>
+          <p class="lead" data-i18n="video.lead"></p>
+        </header>
+
+        <div class="screen">
+          <div class="video-slot video-slot--main" data-video="story"></div>
+        </div>
+        <div class="video-actions" data-video-actions="story"></div>
+        <p class="fineprint" data-i18n="video.privacy"></p>
+      </div>
+    </section>
+
+    <div class="horizon" aria-hidden="true"></div>
+
+    <!-- ========================= 3. THE GAME ========================= -->
+    <section id="game" class="section" aria-labelledby="game-title">
+      <div class="wrap">
+        <div class="game-card arcade-panel">
+          <!-- 🎬 GAMEPLAY VIDEO: paste the YouTube link in config.js → gameVideo.url
+               (until then a "Coming soon" screen is shown here) -->
+          <div class="game-card__preview">
+            <div class="screen screen--game">
+              <div class="video-slot video-slot--card" data-video="game"></div>
+            </div>
+            <div class="video-actions" data-video-actions="game"></div>
+          </div>
+
+          <div class="game-card__body">
+            <p class="kicker" data-i18n="game.kicker"></p>
+            <h2 id="game-title" class="section-title" data-i18n="game.title"></h2>
+            <p class="lead" data-i18n="game.lead"></p>
+            <ul class="chips">
+              <li data-i18n="game.f1"></li>
+              <li data-i18n="game.f2"></li>
+              <li data-i18n="game.f3"></li>
+            </ul>
+            <div class="game-card__cta" data-game-cta></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="horizon" aria-hidden="true"></div>
+
+    <!-- ============ 4. ACCESSIBILITY: SIGN LANGUAGE + BRAILLE ============ -->
+    <!-- The two cards are built by script.js from config.js → accessibility -->
+    <section id="sign" class="section" aria-labelledby="sign-title">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="kicker" data-i18n="sign.kicker"></p>
+          <h2 id="sign-title" class="section-title" data-i18n="sign.title"></h2>
+          <p class="lead" data-i18n="sign.lead"></p>
+        </header>
+        <ul class="sign-grid" data-access-grid></ul>
+      </div>
+    </section>
+
+    <div class="horizon" aria-hidden="true"></div>
+
+    <!-- ======================= 5. THE CREW ======================= -->
+    <!-- 🎨 PIXEL ART: the character cards are generated automatically.
+         To use your own images, DON'T edit this HTML — open config.js,
+         section "7) YOUR PIXEL ART", and write the path of each PNG there
+         (files go in assets/img/characters/). -->
+    <section id="story" class="section" aria-labelledby="story-title">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="kicker" data-i18n="story.kicker"></p>
+          <h2 id="story-title" class="section-title" data-i18n="story.title"></h2>
+          <p class="lead" data-i18n="story.charsLead"></p>
+        </header>
+        <ul class="char-grid" data-char-grid></ul>
+        <p class="fineprint" data-i18n="story.factsNote"></p>
+      </div>
+    </section>
+
+    <div class="horizon" aria-hidden="true"></div>
+
+    <!-- ======================= 6. WHO WE ARE ======================= -->
+    <section id="team" class="section" aria-labelledby="team-title">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="kicker" data-i18n="team.kicker"></p>
+          <h2 id="team-title" class="section-title" data-i18n="team.title"></h2>
+        </header>
+        <!-- 🖼️ TEAM IMAGE: set its path in config.js → teamImage (section 5) -->
+        <figure class="team-image" data-team-image></figure>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="site-footer">
+    <div class="horizon" aria-hidden="true"></div>
+    <div class="wrap site-footer__inner">
+      <div class="site-footer__brand">
+        <span class="brand__logo brand__logo--lg" data-logo aria-hidden="true"></span>
+        <div>
+          <p class="site-footer__team"><span data-config="teamName"></span></p>
+          <p data-i18n="footer.made"></p>
+          <p data-i18n="footer.event"></p>
+        </div>
+      </div>
+      <!-- Optional: add footer.disclaimer to config.js (en + es) to show a disclaimer here -->
+      <p class="disclaimer" data-i18n="footer.disclaimer"></p>
+      <div class="site-footer__row">
+        <div class="lang-switch" role="group" data-i18n-attr="aria-label:a11y.langGroup">
+          <span class="lang-switch__label" data-i18n="footer.lang"></span>
+          <button type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="true">EN</button>
+          <span aria-hidden="true">|</span>
+          <button type="button" data-lang="es" lang="es" aria-label="Español" aria-pressed="false">ES</button>
+        </div>
+        <a class="footer-link" href="https://www.spaceappschallenge.org/" target="_blank" rel="noopener noreferrer"><span data-i18n="footer.official"></span> <span class="sr-only" data-i18n="a11y.newTab"></span></a>
+        <a class="footer-link" href="#top" data-i18n="footer.top"></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Easter-egg layer + polite announcements -->
+  <div class="egg-layer" aria-hidden="true"></div>
+  <div class="toast" role="status" aria-live="polite"></div>
+
+  <noscript>
+    <div class="noscript">This site needs JavaScript to show its texts and videos. · Este sitio necesita JavaScript para mostrar sus textos y videos.</div>
+  </noscript>
+
+  <script src="config.js"></script>
+  <script src="assets/js/sprites.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
