@@ -54,8 +54,8 @@ window.CONFIG = {
   // Paste the normal YouTube link; until then a "Coming soon" screen is shown.
   gameVideo: {
     url: {
-      en: "PASTE_ENGLISH_YOUTUBE_URL_HERE",
-      es: "PASTE_SPANISH_YOUTUBE_URL_HERE"
+      en: "https://youtu.be/mYDmV1iW2Zk",
+      es: "https://youtu.be/mYDmV1iW2Zk"
     },
     title: { en: "Mariner 9 Mission — gameplay", es: "Misión Mariner 9 — gameplay" }
   },
@@ -70,11 +70,11 @@ window.CONFIG = {
         en: "PASTE_ENGLISH_YOUTUBE_URL_HERE",
         es: "PASTE_SPANISH_YOUTUBE_URL_HERE"
       },
-      title: { en: "The story in sign language", es: "La historia en lengua de señas" },
+      title: { en: "Vocabulary of the story in sign language", es: "Vocabulario de la historia en lengua de señas" },
       // Which sign language each video uses (short code + full name). Change if needed.
       language: {
-        code: { en: "ASL", es: "LSC" },
-        name: { en: "American Sign Language", es: "Lengua de Señas Colombiana" }
+        code: { en: "LSC", es: "LSC" },
+        name: { en: "Colombian Sign Language", es: "Lengua de Señas Colombiana" }
       }
     },
     // Card 2: braille version as a PDF — one PDF per language.
@@ -85,27 +85,26 @@ window.CONFIG = {
         en: "assets/docs/brailleingles.pdf",   // e.g. "assets/docs/mariner9-braille-en.pdf"
         es: "assets/docs/brailleespanol.pdf"    // e.g. "assets/docs/mariner9-braille-es.pdf"
       },
+
+      // 🖼️ OPTIONAL — your own cover image instead of the glowing braille dots.
+      // To use it: put the images in assets/img/ and DELETE the "//" at the start
+      // of the 2 lines below (image + imageAlt). Leave them commented to keep the dots.
+      // image:    { en: "assets/img/braille-cover-en.png", es: "assets/img/braille-cover-es.png" },
+      // imageAlt: { en: "Describe your image here", es: "Describe tu imagen aquí" },
       title: { en: "The story in braille", es: "La historia en braille" }
     }
   },
 
   /* ------------------------------------------------------------------------
-     5) WHO WE ARE — one image (team photo, poster, collage...)
-        STEP 1: put the image in  assets/img/team/
-        STEP 2: write its path below.
-        You can use the SAME image for both languages:
-            src: "assets/img/team/equipo.png",
-        or a DIFFERENT image per language (e.g. if it has text on it):
-            src: { en: "assets/img/team/team-en.png", es: "assets/img/team/equipo-es.png" },
-        "alt" describes the image for blind visitors (screen readers).
-        Until you add it, a "Coming soon" frame is shown.
+     5) WHO WE ARE — a YouTube video about the team (one per language)
+        Paste the normal YouTube links. Until then a "Coming soon" screen is shown.
      ------------------------------------------------------------------------ */
-  teamImage: {
-    src: "PASTE_IMAGE_PATH_HERE",
-    alt: {
-      en: "PASTE_DESCRIPTION (e.g. The six members of Team Cassiopeia smiling at the Space Apps event)",
-      es: "PASTE_DESCRIPCIÓN (ej. Los seis integrantes del equipo Cassiopeia sonriendo en el evento de Space Apps)"
-    }
+  teamVideo: {
+    url: {
+      en: "PASTE_ENGLISH_YOUTUBE_URL_HERE",
+      es: "PASTE_SPANISH_YOUTUBE_URL_HERE"
+    },
+    title: { en: "Meet Team Cassiopeia", es: "Conoce al equipo Cassiopeia" }
   },
 
   /* ------------------------------------------------------------------------
@@ -214,7 +213,7 @@ window.CONFIG = {
         open: "Open on YouTube",
         soonTitle: "Coming soon",
         soonText: "Our animated story is still rendering. Check back very soon!",
-        privacy: "The video loads from YouTube (privacy-enhanced mode) only when you press play."
+        privacy: ""
       },
       game: {
         kicker: "02 · The game",
@@ -224,7 +223,7 @@ window.CONFIG = {
         f2: "Play in English or Spanish",
         f3: "No download needed",
         play: "PLAY NOW",
-        soon: "JUGAR AHORA",
+        soon: "COMING SOON",
         soonNote: "The game link will appear here very soon.",
         note: "Opens the game in a new tab",
         videoSoonTitle: "Gameplay video coming soon",
@@ -251,16 +250,16 @@ window.CONFIG = {
         kicker: "04 · Characters",
         title: "The crew",
         charsLead: "Two heroes, six real NASA explorers.",
-        factsNote: "Cass and the robot Mariner 9 are fictional characters. The probe facts come from NASA's public mission history.",
+        factsNote: "",
         chars: {
-          cass:        { tag: "Hero · 2072",      line: "I'm a curious mechanic who found my grandfather's robot in the attic... and the mission he never finished." },
-          mariner9:    { tag: "Robot · AI",       line: "I´m a research robot with the knowledge of the real Mariner 9, which in 1971 was the first spacecraft to orbit another planet." },
+          cass:        { tag: "Hero · 2072",      line: "I'm a curious mechanic who found my grandfather’s robot in the attic… along with the mission he never finished." },
+          mariner9:    { tag: "Robot · AI",       line: "I'm a research robot possessing the knowledge of the actual Mariner 9, which in 1971 became the first spacecraft to orbit another planet." },
           viking1:     { tag: "Lander · 1976",    line: "I was the first NASA mission to successfully land on Mars and send back photos from the surface." },
-          viking2:     { tag: "Lander · 1976",    line: "I was the twin of Viking 1. I later landed in 1976 on another plain, Utopia Planitia, to study Mars and look for signs of life." },
-          spirit:      { tag: "Rover · 2004",     line: "I was one of the twin rovers of the Mars Exploration Rover mission. I explored Gusev Crater and found evidence that water shaped Mars." },
-          opportunity: { tag: "Rover · 2004",     line: "I was Spirit's twin and landed in Meridiani Planum. I was planned for about 90 Martian days and kept rolling for almost 15 years." },
-          maven:       { tag: "Orbiter · 2014",   line: "I was an orbiter created to study the upper atmosphere of Mars and how the planet lost much of its air into space." },
-          sojourner:   { tag: "Rover · 1997",     line: "I was the first wheeled rover on Mars, which arrived with the Mars Pathfinder mission: I am the veteran of the group." }
+          viking2:     { tag: "Lander · 1976",    line: "I was the twin of Viking 1. I landed later, in 1976, on another plain—Utopia Planitia—to study Mars and search for signs of life." },
+          spirit:      { tag: "Rover · 2004",     line: "I was one of the twin rovers from the Mars Exploration Rover mission. I explored Gusev Crater and found evidence that water shaped Mars." },
+          opportunity: { tag: "Rover · 2004",     line: "I was Spirit's twin, and I landed in Meridiani Planum. I was planned for about 90 Martian days, but I kept rolling for nearly 15 years." },
+          maven:       { tag: "Orbiter · 2014",   line: "I was an orbiter created to study the upper atmosphere of Mars and how the planet lost much of its air to space." },
+          sojourner:   { tag: "Rover · 1997",     line: "I was the first wheeled rover on Mars, arriving with the Mars Pathfinder mission: I am the veteran of the group." }
         },
         names: {
           cass: "Cass Rodriguez", mariner9: "Mariner 9", viking1: "Viking 1", viking2: "Viking 2",
@@ -271,8 +270,8 @@ window.CONFIG = {
         kicker: "05 · Who we are",
         title: "Team Cassiopeia",
         p1: "We are Cassiopeia, a team of six from Duitama, Boyacá, Colombia. We love space, stories and games, and we believe science is for everyone — that's why Mariner 9 Mission comes as an animated story, a playable game, and versions in sign language and braille.",
-        imageSoonTitle: "Team photo coming soon",
-        imageSoonText: "Our crew picture will appear right here."
+        videoSoonTitle: "Team video coming soon",
+        videoSoonText: "Meet the crew behind the mission right here."
       },
       footer: {
         made: "Made with stardust in Sogamoso by Team Cassiopeia",
@@ -343,7 +342,7 @@ window.CONFIG = {
         open: "Ver en YouTube",
         soonTitle: "Muy pronto",
         soonText: "Nuestra historia animada todavía se está renderizando. ¡Vuelve muy pronto!",
-        privacy: "El video se carga desde YouTube (modo de privacidad mejorada) solo cuando presionas reproducir."
+        privacy: ""
       },
       game: {
         kicker: "02 · El juego",
@@ -353,6 +352,8 @@ window.CONFIG = {
         f2: "Juega en español o en inglés",
         f3: "Sin descargas",
         play: "JUGAR AHORA",
+        soon: "MUY PRONTO",
+        soonNote: "El enlace del juego aparecerá aquí muy pronto.",
         note: "Abre el juego en una pestaña nueva",
         videoSoonTitle: "Video del juego muy pronto",
         videoSoonText: "Aquí podrás ver un adelanto del juego."
@@ -378,7 +379,7 @@ window.CONFIG = {
         kicker: "04 · Personajes",
         title: "La tripulación",
         charsLead: "Dos protagonistas y seis exploradores reales de la NASA.",
-        factsNote: "Cass y el robot Mariner 9 son personajes de ficción. Los datos de las sondas provienen de la historia pública de las misiones de la NASA.",
+        factsNote: "",
         chars: {
           cass:        { tag: "Protagonista · 2072", line: "Soy una mecánica curiosa que encontré el robot de mi abuelo en el ático… y la misión que él nunca terminó." },
           mariner9:    { tag: "Robot · IA",          line: "Soy un robot de investigación con el conocimiento de la Mariner 9 real, que en 1971 fue la primera nave en orbitar otro planeta." },
@@ -398,8 +399,8 @@ window.CONFIG = {
         kicker: "05 · Quiénes somos",
         title: "Equipo Cassiopeia",
         p1: "Somos Cassiopeia, un equipo de seis personas de Sogamoso, Boyacá, Colombia. Nos encantan el espacio, las historias y los videojuegos, y creemos que la ciencia es para todos. Por eso Misión Mariner 9 llega como historia animada, como juego y en versiones en lengua de señas y braille.",
-        imageSoonTitle: "Foto del equipo muy pronto",
-        imageSoonText: "Aquí aparecerá la foto de nuestra tripulación."
+        videoSoonTitle: "Video del equipo muy pronto",
+        videoSoonText: "Aquí conocerás a la tripulación detrás de la misión."
       },
       footer: {
         made: "Hecho con polvo de estrellas en Sogamoso por el equipo Cassiopeia",
