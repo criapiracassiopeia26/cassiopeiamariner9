@@ -724,6 +724,10 @@ main:focus-visible { box-shadow: none; outline: none; }
   text-shadow: 0 0 18px rgba(255, 179, 71, .55);
 }
 .braille-cover .video-soon__title { margin: 0; }
+.braille-cover.has-image { padding: 0; position: relative; }
+.braille-cover__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.braille-cover.has-image .video-soon__title,
+.braille-cover.has-image .video-soon__text { position: relative; padding: 4px 10px; background: rgba(10, 8, 32, .85); }
 
 /* ---------- 10. STORY & CHARACTERS ---------- */
 .char-grid { display: grid; gap: var(--s3); margin-top: var(--s3); grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); }
@@ -761,28 +765,7 @@ main:focus-visible { box-shadow: none; outline: none; }
 .char-card__line { margin: 0; font-size: .98rem; color: var(--c-text); }
 
 /* ---------- 11. TEAM ---------- */
-.team-image {
-  margin: 0;
-  max-width: 1000px;
-  padding: clamp(8px, 1.6vw, 16px);
-  background: linear-gradient(180deg, #2a2f52, #161a33);
-  border: 3px solid var(--c-border);
-  box-shadow: 0 0 0 3px var(--c-space-950), var(--shadow-hard), 0 0 60px rgba(91, 63, 176, .35);
-}
-.team-image img { display: block; width: 100%; height: auto; border: 3px solid var(--c-space-950); }
-.team-image__soon {
-  aspect-ratio: 16 / 9;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--s1);
-  padding: var(--s3); text-align: center;
-  background-color: #0b0a1f;
-  background-image:
-    linear-gradient(rgba(79, 227, 255, .07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(79, 227, 255, .07) 1px, transparent 1px),
-    radial-gradient(ellipse at center, rgba(91, 63, 176, .35), transparent 70%);
-  background-size: 16px 16px, 16px 16px, 100% 100%;
-  border: 3px dashed var(--c-border-dim);
-}
-.team-image__soon .sprite { width: 64px; }
+.team-video { max-width: 1000px; }
 
 /* ---------- 12. FOOTER, TOAST, EASTER EGG ---------- */
 .site-footer {
