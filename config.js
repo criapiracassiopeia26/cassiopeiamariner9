@@ -274,7 +274,7 @@ window.CONFIG = {
         videoSoonText: "Meet the crew behind the mission right here."
       },
       footer: {
-        made: "Made with stardust in Sogamoso by Team Cassiopeia",
+        made: "The programming for this page was created using the artificial intelligence Claude.",
         event: "Created for the NASA International Space Apps Challenge 2026 · Duitama, Colombia",
         official: " NASA Space Apps Challenge official site",
         top: "Back to top",
@@ -403,7 +403,7 @@ window.CONFIG = {
         videoSoonText: "Aquí conocerás a la tripulación detrás de la misión."
       },
       footer: {
-        made: "Hecho con polvo de estrellas en Sogamoso por el equipo Cassiopeia",
+        made: "La programación de esta página fue realizada utilizando la inteligencia artificial Claude",
         event: "Creado para el NASA International Space Apps Challenge 2026 · Duitama, Colombia",
         official: "Sitio oficial deL NASA Space Apps Challenge",
         top: "Volver arriba",
