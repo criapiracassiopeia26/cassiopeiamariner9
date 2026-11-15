@@ -135,8 +135,20 @@
     return m ? (+m[1] || 0) * 3600 + (+m[2] || 0) * 60 + (+m[3] || 0) : 0;
   }
 
+  /*
+   * YouTube "Error 153" = the player didn't receive a referrer (the address of
+   * the page embedding it). That happens when the page is opened as a file
+   * (file:///…, double-clicking index.html), inside some sandboxed previews, or
+   * with extensions that strip referrers. On a real web address (GitHub Pages,
+   * Netlify, localhost) we send the referrer + origin and the player works.
+   * Where embedding can't work, Play opens the video on YouTube instead.
+   */
+  var CAN_EMBED = /^https?:$/.test(location.protocol) && location.origin && location.origin !== 'null';
+
   function embedUrl(v) {
-    var p = 'autoplay=1&rel=0&playsinline=1&hl=' + lang + '&cc_lang_pref=' + lang;
+    var p = 'autoplay=1&rel=0&playsinline=1&hl=' + lang + '&cc_lang_pref=' + lang +
+      '&enablejsapi=0&origin=' + encodeURIComponent(location.origin) +
+      '&widget_referrer=' + encodeURIComponent(location.href.split('#')[0]);
     if (v.start) p += '&start=' + v.start;
     return 'https://www.youtube-nocookie.com/embed/' + v.id + '?' + p;
   }
@@ -174,6 +186,10 @@
     btn.setAttribute('aria-label', t('a11y.playVideo', { title: L(video.title) }));
 
     btn.addEventListener('click', function () {
+      if (!CAN_EMBED) { // opened as a local file: YouTube would show Error 153, so open it on YouTube
+        window.open(watchUrl(v), '_blank', 'noopener');
+        return;
+      }
       var iframe = el('iframe', {
         src: embedUrl(v),
         title: L(video.title) + ' (YouTube)',
@@ -555,8 +571,16 @@
       var hasPdf = !isPlaceholder(url);
       title2.textContent = L(pdf.title);
       cover.setAttribute('aria-label', t('a11y.brailleArt'));
-      cover.innerHTML = '<span class="braille-cover__dots" aria-hidden="true">' + (lang === 'es' ? '⠍⠁⠗⠞⠑' : '⠍⠁⠗⠎') + '</span>' +
+      // Optional own cover image: config.js → accessibility.braillePdf.image (commented out there for now)
+      var coverImg = L(pdf.image);
+      var hasImg = coverImg && !isPlaceholder(coverImg);
+      cover.classList.toggle('has-image', !!hasImg);
+      cover.innerHTML = (hasImg
+          ? '<img class="braille-cover__img" src="' + escapeHtml(coverImg) + '" alt="" decoding="async">'
+          : '<span class="braille-cover__dots" aria-hidden="true">' + (lang === 'es' ? '⠍⠁⠗⠞⠑' : '⠍⠁⠗⠎') + '</span>') +
         (hasPdf ? '' : '<p class="video-soon__title" data-i18n="sign.pdfSoonTitle"></p><p class="video-soon__text" data-i18n="sign.pdfSoonText"></p>');
+      var imgAlt = L(pdf.imageAlt);
+      cover.setAttribute('aria-label', hasImg && imgAlt ? imgAlt : t('a11y.brailleArt'));
       pdfActions.innerHTML = '';
       pdfActions.hidden = !hasPdf;
       if (hasPdf) {
@@ -591,32 +615,11 @@
     });
   }
 
-  /** "Who we are": a single image (same for both languages, or one per language). */
-  function buildTeamImage() {
-    var fig = $('[data-team-image]');
-    if (!fig) return;
-    var cfg = CFG.teamImage || {};
-    var img = null;
-    var soon = el('div', { class: 'team-image__soon' },
-      '<span class="sprite" data-sprite="avatar" aria-hidden="true"></span>' +
-      '<p class="video-soon__title" data-i18n="team.imageSoonTitle"></p>' +
-      '<p class="video-soon__text" data-i18n="team.imageSoonText"></p>');
-    fig.appendChild(soon); // added now so its texts get translated with the rest of the page
-    onLang(function () {
-      var src = L(cfg.src);
-      if (isPlaceholder(src)) {
-        if (img) { img.remove(); img = null; }
-        if (!soon.isConnected) fig.appendChild(soon);
-        fig.classList.add('is-empty');
-        return;
-      }
-      if (soon.isConnected) soon.remove();
-      fig.classList.remove('is-empty');
-      if (!img) { img = el('img', { loading: 'lazy', decoding: 'async' }); fig.appendChild(img); }
-      if (img.getAttribute('src') !== src) img.src = src;
-      var alt = L(cfg.alt);
-      img.alt = isPlaceholder(alt) ? '' : alt;
-    });
+  /** "Who we are": a YouTube video (one per language), shown in a big screen frame. */
+  function buildTeamVideo() {
+    var slot = $('[data-video="team"]');
+    if (!slot) return;
+    mountVideo(slot, $('[data-video-actions="team"]'), CFG.teamVideo, ['team.videoSoonTitle', 'team.videoSoonText'], 'pixel-btn pixel-btn--cyan');
   }
 
   /* ---------- 7. LANGUAGE ---------- */
@@ -835,7 +838,7 @@
     buildGame();
     buildAccessibility();
     buildCharacters();
-    buildTeamImage();
+    buildTeamVideo();
 
     renderSprites(document);
     $$('[data-mars]').forEach(createMars);
