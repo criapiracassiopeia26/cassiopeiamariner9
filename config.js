@@ -67,8 +67,8 @@ window.CONFIG = {
     // Card 1: sign-language video — one video per language.
     signVideo: {
       url: {
-        en: "PASTE_ENGLISH_YOUTUBE_URL_HERE",
-        es: "PASTE_SPANISH_YOUTUBE_URL_HERE"
+        en: "https://www.youtube.com/shorts/rHDImjZG78w",
+        es: "https://www.youtube.com/shorts/rHDImjZG78w"
       },
       title: { en: "Vocabulary of the story in sign language", es: "Vocabulario de la historia en lengua de señas" },
       // Which sign language each video uses (short code + full name). Change if needed.
