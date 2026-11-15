@@ -10,6 +10,8 @@
   <meta name="description" content="Mariner 9 Mission: a pixel-art animated story, a browser game and an accessible version in sign language and braille by Team Cassiopeia for the NASA Space Apps Challenge 2026 in Duitama, Colombia.">
   <meta name="theme-color" content="#0d0a22">
   <meta name="color-scheme" content="dark">
+  <!-- YouTube needs the page address (referrer) or it shows "Error 153" -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
 
   <!-- After deploying, replace PASTE_SITE_URL_HERE with your real address (see README) -->
   <link rel="canonical" href="PASTE_SITE_URL_HERE">
@@ -243,8 +245,11 @@
           <p class="kicker" data-i18n="team.kicker"></p>
           <h2 id="team-title" class="section-title" data-i18n="team.title"></h2>
         </header>
-        <!-- 🖼️ TEAM IMAGE: set its path in config.js → teamImage (section 5) -->
-        <figure class="team-image" data-team-image></figure>
+        <!-- 🎬 TEAM VIDEO: paste the YouTube links (EN + ES) in config.js → teamVideo (section 5) -->
+        <div class="screen team-video">
+          <div class="video-slot video-slot--main" data-video="team"></div>
+        </div>
+        <div class="video-actions" data-video-actions="team"></div>
       </div>
     </section>
   </main>
