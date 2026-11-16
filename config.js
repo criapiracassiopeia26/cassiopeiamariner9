@@ -102,7 +102,7 @@ window.CONFIG = {
   teamVideo: {
     url: {
       en: "https://youtu.be/1b7ULDUDjqA",
-      es: "PASTE_SPANISH_YOUTUBE_URL_HERE"
+      es: "https://youtu.be/1b7ULDUDjqA"
     },
     title: { en: "Meet Team Cassiopeia", es: "Conoce al equipo Cassiopeia" }
   },
