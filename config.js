@@ -39,8 +39,8 @@ window.CONFIG = {
      ------------------------------------------------------------------------ */
   storyVideo: {
     url: {
-      en: "PASTE_ENGLISH_YOUTUBE_URL_HERE",   // shown when the page is in English
-      es: "PASTE_SPANISH_YOUTUBE_URL_HERE"    // shown when the page is in Spanish
+      en: "https://youtu.be/QTqq3c58wbs",   // shown when the page is in English
+      es: "https://youtu.be/QTqq3c58wbs"    // shown when the page is in Spanish
     },
     title: { en: "Mariner 9 Mission — the animated story", es: "Misión Mariner 9 — la historia animada" }
   },
